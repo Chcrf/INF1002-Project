@@ -1,0 +1,5 @@
+API_KEY="YOUR_API_KEY"
+GEMINI_INPUT_FILE="job_desc.csv"
+GEMINI_OUTPUT_FILE="job_desc_with_skills.csv"
+SCRAPE_OUTPUT_FILE="job_listing.csv"
+MODE="GPU"

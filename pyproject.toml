@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "INF1002-Project"
+version = "0.0.1"
+dependencies = [
+"google.generativeai",
+"pandas",
+"tqdm",
+"spacy",
+"beautifulsoup4"
+"numpy"
+"scikit_learn"
+"selenium"
+"transformers"
+"webdriver_manager"
+]
