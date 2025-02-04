@@ -1,0 +1,62 @@
+[
+ {
+  "name": "Information Technology",
+  "value": 1185
+ },
+ {
+  "name": "Engineering",
+  "value": 503
+ },
+ {
+  "name": "F&B",
+  "value": 473
+ },
+ {
+  "name": "Education and Training",
+  "value": 364
+ },
+ {
+  "name": "Accounting / Auditing / Taxation",
+  "value": 352
+ },
+ {
+  "name": "Banking and Finance",
+  "value": 344
+ },
+ {
+  "name": "Building and Construction",
+  "value": 330
+ },
+ {
+  "name": "Healthcare / Pharmaceutical",
+  "value": 315
+ },
+ {
+  "name": "Admin / Secretarial",
+  "value": 313
+ },
+ {
+  "name": "Logistics / Supply Chain",
+  "value": 293
+ },
+ {
+  "name": "Sales / Retail",
+  "value": 255
+ },
+ {
+  "name": "Human Resources",
+  "value": 206
+ },
+ {
+  "name": "Others",
+  "value": 179
+ },
+ {
+  "name": "Customer Service",
+  "value": 158
+ },
+ {
+  "name": "Marketing / Public Relations",
+  "value": 148
+ }
+]
