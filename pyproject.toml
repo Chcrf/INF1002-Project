@@ -17,5 +17,6 @@ dependencies = [
 "transformers",
 "webdriver_manager",
 "fuzzywuzzy",
-"python-levenshtein"
+"python-levenshtein",
+"spacy-transformers"
 ]
