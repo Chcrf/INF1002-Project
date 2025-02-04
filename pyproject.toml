@@ -10,10 +10,10 @@ dependencies = [
 "pandas",
 "tqdm",
 "spacy",
-"beautifulsoup4"
-"numpy"
-"scikit_learn"
-"selenium"
-"transformers"
+"beautifulsoup4",
+"numpy",
+"scikit_learn",
+"selenium",
+"transformers",
 "webdriver_manager"
 ]
