@@ -15,5 +15,7 @@ dependencies = [
 "scikit_learn",
 "selenium",
 "transformers",
-"webdriver_manager"
+"webdriver_manager",
+"fuzzywuzzy",
+"python-levenshtein"
 ]
