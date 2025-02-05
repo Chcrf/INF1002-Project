@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+
+    <!--Scripts-->
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script defer src="js/main.js"></script>
+    <!-- Include ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.4/wordcloud2.min.js"></script>
+</head>
+
+<body id="body">
+    <header class="navbar navbar-expand-md navbar-dark bg-dark navbar-margin-left-0">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" id="webTitle">SkillSearch</a>
+        </div>
+
+    </header>
+
+    <div id="search">
+        <img id="logo" src="img/logo.png" alt="Logo Image">
+
+        <form id="search-form" class="rounded-3" method="POST" action="/">
+            <label id="search-label">
+                <img id="search-icon" src="img/search.png" for="searching" alt="Search Icon">
+            </label>
+            <input name="searching" id="searching" type="text">
+            <img id="cross-icon" src="img/cross.png" alt="Clear Icon">
+            <!--JS to clear search input when clicked-->
+        </form>
+        <br>
+
+        <div id="searchResults">
+            {% if error == 0 %}
+            <h1 id="jobRole">{{searched_job}}</h1>
+            <ul id="skillList">
+                {% for core_skill in core_skills %}
+                    <li class="core skills"><p>C</p>{{ core_skill }}</li>
+                {% endfor %}
+                {% if additional_check %}
+                    {% for additional_skill in additional_skills %}
+                        <li class="additional skills"><p>A</p>{{ additional_skill }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+    
+            {% elif error == 1 %}
+            <h2 id="error">An error has occured, please search using a different word or try again later.</h2>
+    
+            {% elif error == 2 %}
+            <h2 id="noMatch">No results found.</h1>
+            <h3>We will try to add {{ searched_job }} into our database. In the meantime, please try searching other jobs.</h3>
+    
+            {% else %}
+    
+            {% endif %}
+        </div>
+    </div>
+
+
+    <main id="main" class="carousel">
+        <h1 id="header1">Interesting Insights</h1>
+        <!-- Carousel container -->
+        <div class="carousel-inner">
+            <div id="leftCarousel" class="carousel-side translateLeft"> </div>
+            <div id="rightCarousel" class="carousel-side translateRight"> </div>
+            <div class="carousel-item mx-auto float-none active" id="carousel1">
+                <div class="carousel-text p-3 text-white">
+                    <h1>This is Graph 1</h1>
+                </div>
+
+                <div class="carousel-graph" id="graph1">
+                    <script src="js/chart.js"></script>
+                </div>
+                <div class="form-check form-switch" id="asc-dsc">
+                    <input class="form-check-input" type="checkbox" id="toggle_button">
+                    <label class="form-check-label" for="toggle_button" id="toggle_asc_dsc">Ascending</label>
+                </div>
+            </div>
+
+            <div class="carousel-item mx-auto float-none" id="carousel2">
+                <div class="carousel-text p-3 text-white">
+                    <h1>This is Graph 2</h1>
+                </div>
+                <div class="carousel-graph">
+                    <canvas id="wordcloud"></canvas>
+                </div>
+                <script defer src="js/wordcloud.js"></script>
+            </div>
+            
+            <div class="carousel-item mx-auto float-none" id="carousel3">
+                <div class="carousel-text p-3 text-white">
+                    <h1>This is Graph 3</h1>
+                </div>
+                <div class="carousel-graph"></div>
+            </div>
+        </div>
+
+        <!--Left and right icons-->
+        <!--replace this with javascript for easier scrolling control-->
+        <button class="carousel-control-prev" type="button" data-bs-target="#main" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#main" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+        <!--<a target="_blank" href="https://icons8.com/icon/40217/back">Back</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        <a target="_blank" href="https://icons8.com/icon/7849/forward">Forward</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>-->
+    </main>
+</body>
+
+</html>
