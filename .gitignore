@@ -1,3 +1,4 @@
 src/model
 src/model.zip
 src/utils/embeddings/*
+src/datasets/*

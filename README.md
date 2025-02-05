@@ -37,28 +37,65 @@ Run the following command to install the project:
 ```sh
 pip install -e .
 ```
+### 4. Adding Embeddings
+Add the embeddings to the program:
+1. Download the embeddings from the releases page (embeddings.zip).
+2. Extract the embeddings
+3. Place it in the following directory structure inside `src/`:
+```sh
+./
+├─ src/
+│  ├─ utils/
+│  │  ├─ embeddings/
+│  │  │  ├─ occupations_embedding.pkl
+│  │  │  ├─ skills_embedding.pkl
+```
+Now, your environment is set up and ready to use!
+## Using Prepared Data (Optional)
+### Using Pre-Trained Model
+To use pre-trained models, follow these steps:
 
-### 4. Adding Pre-Trained Model and Embeddings
-To use pre-trained models and embeddings, follow these steps:
-
-1. Download the pre-trained model and embeddings from the releases page.
-2. Extract the downloaded files.
-3. Place them in the following directory structure inside `src/`:
+1. Download the pre-trained model from the releases page (model.zip).
+2. Extract the model.
+3. Place it in the following directory structure inside `src/`:
 
 ```sh
 ./
 ├─ src/
 │  ├─ model/
 │  │  ├─ model-best/
-│  ├─ utils/
-│  │  ├─ embeddings/
-│  │  │  ├─ occupations_embedding.pkl
-│  │  │  ├─ skills_embedding.pkl
 ```
 
-Ensuring the correct directory structure will allow the program to load the model and embeddings seamlessly.
+### Using Prepared Datasets
+To use prepared datasets, follow these steps:
+1. Download the prepared datasets from the releases page (datasets.zip).
+2. Extract the datasets
+3. Place it in the following directory structure inside `src/`:
 
-Now, your environment is set up and ready to use!
+```sh
+./
+├─ src/
+│  ├─ datasets/
+│  │  ├─ [The datasets to use]
+```
+
+Available datasets provided:
+- Training Data
+    - job_desc.csv
+        - Contains raw data of job listings
+        - Intended to be used for Google Gemini auto labelling
+    - job_desc_with_skills.csv
+        - Contains annotated data from Google Gemini
+        - Intended to be used starting from the Data Cleaning step
+- Processing Data
+    - job_listing.csv
+        - Contains scraped data from MyCareersFuture website
+        - Intended to be used by model for processing
+- Out-of-the-box Data
+    - job_listing_normalized.csv
+        - Contains normalized scraped data that the model processed
+        - Intended to be directly used by the web server  
+
 
 ## Usage
 
