@@ -18,5 +18,6 @@ dependencies = [
 "webdriver_manager",
 "fuzzywuzzy",
 "python-levenshtein",
-"spacy-transformers"
+"spacy-transformers",
+"flask"
 ]
