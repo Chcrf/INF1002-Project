@@ -9,10 +9,22 @@ from preprocessing.dataConverter import DataConverter
 from preprocessing.gemini_AutoLabelling import GeminiAutoLabeller
 
 class Trainer():
+    '''
+    A module that trains the NER model
+    '''
     def __init__(self):
-        self.install_spacy_required_packages(CONSTANTS.MODE)
+        '''
+        Initializes the class and installs required spacy packages
+        '''
+        self._install_spacy_required_packages(CONSTANTS.MODE)
 
-    def install_spacy_required_packages(self,mode="CPU"):
+    def _install_spacy_required_packages(self,mode="CPU"):
+        '''
+        A private function that installs relevant spacy packages based on training mode
+
+        Parameters:
+            mode (str): Either GPU or CPU mode for training of model
+        '''
         if(mode == "GPU"):
             package = "en_core_web_trf"
         else:
@@ -22,6 +34,21 @@ class Trainer():
             subprocess.check_call([sys.executable, "-m", "spacy", "download", package])
 
     def train(self):
+        '''
+        Trains the NER model using the relevant training mode
+
+        Training Mode Input:
+            config/constants.py::MODE
+
+        File Input:
+            Fixed::datasets/training_data.spacy
+            Fixed::datasets/valid_data.spacy
+            Fixed::config/config_gpu.cfg
+            Fixed::config/config_cpu.cfg
+        
+        File Output:
+            Fixed::model (Directory)
+        '''
         #1. Use gemini to auto label training data
         autoLabeller = GeminiAutoLabeller()
         autoLabeller.autoLabel()

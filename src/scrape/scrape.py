@@ -13,7 +13,13 @@ from config import constants as CONSTANTS
 
 
 class Scraper():
+    '''
+    A module that scrapes the MyCareersFuture website
+    '''
     def __init__(self):
+        '''
+        Create a chrome driver for scraping
+        '''
         options = Options()
         options.add_argument("--headless")
         # Define the URL for the job listing page
@@ -22,36 +28,47 @@ class Scraper():
         folder = os.path.dirname(chrome_install)
         chromedriver_path = os.path.join(folder, "chromedriver.exe")
         self.driver = webdriver.Chrome(service=Service(chromedriver_path),options=options)
-    def get_jobs(self, driver): 
+
+    def _get_jobs(self): 
+        '''
+        A private function that goes through individual job listing on the MyCareersFuture website
+        '''
         page=0
         while page <=499:
             joblist=[]
             print("Crawling Page",page)
             url = f'https://www.mycareersfuture.gov.sg/search?sortBy=relevancy&page={page}'
 
-            driver.get(url)
+            self.driver.get(url)
             try:
-                WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.ID, "job-card-0")))
-                html_content = driver.page_source
+                WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.ID, "job-card-0")))
+                html_content = self.driver.page_source
                 # Parse the content of the page
                 soup = BeautifulSoup(html_content, 'html.parser')
                 jobs=soup.find_all(attrs={"data-testid": "job-card-link"})
                 ids = [job.get('href') for job in jobs]
-                for i in ids:joblist.append(i)
-                self.get_job_details(driver,joblist)
+                for i in ids:
+                    joblist.append(i)
+                self._get_job_details(joblist)
             except:
                 pass
             page+=1
     # Function to fetch job details from the page
-    def get_job_details(self, driver,joblist):
+    def _get_job_details(self,joblist):
+        '''
+        A private function that extracts job details from individual job listings on the MyCareersFuture website
+
+        Parameters:
+            joblist (list): A list containing the link to the individual job listings
+        '''
         for i in joblist:
             
             url = f'https://www.mycareersfuture.gov.sg{i}'
             print(url)
-            driver.get(url)
+            self.driver.get(url)
             try:
-                WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.XPATH, '//div[@data-testid="description-content"]/descendant::p')))
-                html_content = driver.page_source
+                WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, '//div[@data-testid="description-content"]/descendant::p')))
+                html_content = self.driver.page_source
                 # Parse the content of the page
                 soup = BeautifulSoup(html_content, 'html.parser')
                 # Extract job details
@@ -78,13 +95,22 @@ class Scraper():
                     'Job Description': job_description,
                     'Job URL': url
                 }
-                self.save_job_to_csv(job_details)
+                self._save_job_to_csv(job_details)
             except:
                 pass
 
 
     # Function to save job details to CSV
-    def save_job_to_csv(self, job_details):
+    def _save_job_to_csv(self, job_details):
+        '''
+        A private function that stores extracted data into a csv file
+
+        Parameters:
+            job_details (dict):  A dictionary that contains job details
+
+        File Output:
+            config/constants.py::SCRAPE_OUTPUT_FILE 
+        '''
         fieldnames = ['Job Title', 'Company Name', 'Location', 'Categorie','Job type','Seniority','Minimum experience','Salary','Job Description', 'Job URL']
         filename=Path(__file__).parent.parent / f'datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}'
         with open(filename, mode='a', newline='', encoding='utf-8') as file:
@@ -100,5 +126,8 @@ class Scraper():
 
     # Main function to run the crawler
     def scrape(self):
-        self.get_jobs(self.driver)
+        '''
+        Main function to start the scraper
+        '''
+        self._get_jobs()
         self.driver.quit()

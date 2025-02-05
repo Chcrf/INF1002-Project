@@ -6,13 +6,22 @@ from utils.SemanticSim_Skills import SemanticSim as SemanticSim_Skills
 from pathlib import Path
 
 class DataNormalizer():
-    def __init__(self):
-        self.data =pd.read_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}",encoding="utf-8")
-
+    '''
+    A module that converts Job Title and Skills to a standardized format by using semantic similarity.
+    '''
     def normalize(self):
-        occupations = self.data["Job Title"].apply(lambda x: x.lower())
-        skills = self.data["skills"].apply(lambda x: ast.literal_eval(x))
+        '''
+        Standardizes Job Title and Skills using semantic similarity
 
+        File Input:
+            config/constants.py::SCRAPE_OUTPUT_FILE
+        
+        File Output:
+            config/constants.py::SCRAPE_OUTPUT_FILE
+        '''
+        data =pd.read_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}",encoding="utf-8")
+        occupations = data["Job Title"].apply(lambda x: x.lower())
+        skills = data["skills"].apply(lambda x: ast.literal_eval(x))
 
         semanticSim_occupation = SemanticSim_Occupation()
         semanticSim_skills = SemanticSim_Skills()
@@ -20,7 +29,7 @@ class DataNormalizer():
         embeddings = semanticSim_occupation.encodeOccupations(occupations)
         normalized_occupations_w_confidence = semanticSim_occupation.getSim(embeddings)
         normalized_occupations = [title.title().strip() for title,confidence in normalized_occupations_w_confidence]
-        self.data['Job Title'] = normalized_occupations
+        data['Job Title'] = normalized_occupations
 
 
         normalized_skills = []
@@ -38,6 +47,6 @@ class DataNormalizer():
             all_most_similar = semanticSim_skills.getSim(embedding)
             normalized_skills.append(all_most_similar)
 
-        self.data["skills"] = normalized_skills
+        data["skills"] = normalized_skills
 
-        self.data.to_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}",index=False)
+        data.to_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}",index=False)

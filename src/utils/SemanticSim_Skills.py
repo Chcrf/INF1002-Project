@@ -5,31 +5,42 @@ import numpy as np
 from pathlib import Path
 
 class SemanticSim():
+    '''
+    A module that embeds Job Skills and compares it with a pre-embedded Job Skills for standardization 
+    '''
+
     def __init__(self):
+        '''
+        Initializes the class with a transformers model that embeds string as well as a pre-embedded Job Skills file
+
+        File Input:
+            Fixed::src/utils/embeddings/skills_embedding.pkl
+        '''
         self.model = AutoModel.from_pretrained("jinaai/jina-embeddings-v2-small-en",trust_remote_code=True)
         self.skill_embeddings = list(pickle.load(open(Path(__file__).parent / "embeddings/skills_embedding.pkl","rb")))
-
-    def cos_sim(self,a,b):
-        return (a @ b.T) / (norm(a)*norm(b))
     
     def encodeSkills(self, skills):
+        '''
+        Returns the embeddings of the skills
+
+        Parameters:
+            skills (list): List of skills to embed
+
+        Returns:
+            (list): List of skills along with its embeddings
+        '''
         return zip(skills,self.model.encode(skills))
 
-    def isAbbre(self,embeddings):
-        similar_li = []
-        for index in range(len(embeddings)):
-            skill, embed = embeddings[index]
-            for index2 in range(len(embeddings)):
-                if(index == index2):
-                    continue #Skip comparing itself
-                skill2, embed2 = embeddings[index2]
-                similarity = self.cos_sim(embed,embed2)
-                if similarity > 0.9:
-                    similar_li.append((skill,skill2))
-                    # print(f"{skill} and {skill2} are similar",similarity)
-        return similar_li
-
     def getSim(self, embeddings):
+        '''
+        Calculates the semantic similarity between the provided embeddings and skill_embeddings using Cosine Similarity
+
+        Parameters:
+            embeddings (list): The output of (Func) encodeSkills
+
+        Returns:
+            all_embeddings (list): A list of most confident predefined Job Skills along with the confidence score     
+        '''
         # Extract skill names and their embeddings separately
         if(len(embeddings) == 0):
             return []

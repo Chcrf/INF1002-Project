@@ -7,12 +7,29 @@ from tqdm import tqdm
 from utils.DataCleaner import DataCleaner
 
 class SkillExtractor():
+    '''
+    A module that extracts skills from SCRAPE_OUTPUT_FILE
+    '''
     def __init__(self):
+        '''
+        Initializes the class with DataCleaner
+        '''
         self.dataCleaner = DataCleaner()
-        self.data = pd.read_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}")
 
     def extract_skills(self):
-        data = self.data
+        '''
+        Preprocesses SCRAPE_OUTPUT_FILE, extract skills and store it in SCRAPE_OUTPUT_FILE  
+
+        Model Input:
+            Fixed::src/model/model-best
+
+        File Input:
+            config/constants.py::SCRAPE_OUTPUT_FILE
+
+        File Output:
+            config/constants.py::SCRAPE_OUTPUT_FILE
+        '''
+        data = pd.read_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}")
         dataCleaner = self.dataCleaner
         nlp = spacy.load(str(Path(__file__).parent.parent / f"model/model-best"))
         extracted_skills = []

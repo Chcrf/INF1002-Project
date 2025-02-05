@@ -5,17 +5,41 @@ from numpy.linalg import norm
 from pathlib import Path
 
 class SemanticSim():
+    '''
+    A module that embeds Job Title and compares it with a pre-embedded Job Title for standardization 
+    '''
     def __init__(self):
+        '''
+        Initializes the class with a transformers model that embeds string as well as a pre-embedded Job Title file
+
+        File Input:
+            Fixed::src/utils/embeddings/occupations_embedding.pkl
+        '''
         self.model = AutoModel.from_pretrained("jinaai/jina-embeddings-v2-small-en",trust_remote_code=True)
         self.occupation_embeddings = list(pickle.load(open(Path(__file__).parent / "embeddings/occupations_embedding.pkl","rb")))
-
-    def cos_sim(self,a,b):
-        return (a @ b.T) / (norm(a)*norm(b))
     
-    def encodeOccupations(self, occupation):
-        return list(zip(occupation,self.model.encode(occupation)))
+    def encodeOccupations(self, occupations):
+        '''
+        Returns the embeddings of the occupations
+
+        Parameters:
+            occupation (list): List of occupations to embed
+
+        Returns:
+            (list): List of occupation along with its embeddings
+        '''
+        return list(zip(occupations,self.model.encode(occupations)))
 
     def getSim(self,embeddings):
+        '''
+        Calculates the semantic similarity between the provided embeddings and occupation_embeddings using Cosine Similarity
+
+        Parameters:
+            embeddings (list): The output of (Func) encodeOccupations
+
+        Returns:
+            all_embeddings (list): A list of most confident predefined Job Titles along with the confidence score     
+        '''
 
         if(len(embeddings) == 0):
             return []
