@@ -5,8 +5,9 @@ from fuzzywuzzy import process
 import ast
 
 
-# Load dataset
+
 def load_dataset(filename):
+    """Loads job listing as a panda dataframe."""
     try:
         current_dir = os.path.dirname(os.path.abspath(__file__))
         df = pd.read_csv(Path(current_dir) / filename) 
@@ -22,7 +23,7 @@ def load_dataset(filename):
         raise
 
 def find_similar_job(user_input, jobs):
-    """Fuzzy match to find the closest job title using Levenshtein distance"""
+    """Fuzzy match to find the closest job title using Levenshtein distance."""
     try:
         match = process.extractOne(user_input, jobs)
         if match:
@@ -32,14 +33,14 @@ def find_similar_job(user_input, jobs):
         print("An error occurred while finding a similar job: ", e)
 
 def get_high_confidence_skills(skills_str, threshold=0.85):
-    """Extracts the job skills for the given job title and if the confidence level is above the threshold"""
+    """Extracts the job skills for the given job title and only if the confidence level is above the threshold."""
     try:
         skills_list = ast.literal_eval(skills_str)
         return {skill for skill, score in skills_list if score >= threshold}
     except (ValueError, SyntaxError) as e:
         print("An error occurred while parsing skills: ", e)
 
-def get_common_skills_for_title(target_title, threshold=0.85):
+def common_skills_by_title(target_title, threshold=0.85):
     """Compares the skills with other similar job titles, outputs only skills that all the compared jobs have into a list known as common_skills. """
     # Get all jobs with same title
     try:
@@ -71,7 +72,7 @@ def skills_search(df):
             print("No matching job found.")
             return
         
-        common_skills = get_common_skills_for_title(matched_title)
+        common_skills = common_skills_by_title(matched_title)
         
         # Get individual job skills (for single-entry case)
         individual_skills = set()
@@ -84,18 +85,18 @@ def skills_search(df):
         
         if common_skills:
             print(f"Core skills common to ALL '{matched_title}' roles:")
-            for idx, skill in enumerate(sorted(common_skills), 1):
-                print(f"{idx}. {skill}")
+            for sequence, skill in enumerate(sorted(common_skills), 1):
+                print(f"{sequence}. {skill}")
             
             if len(common_skills) < len(individual_skills):
                 print("\nAdditional skills from individual postings:")
                 additional = sorted(individual_skills - common_skills)
-                for idx, skill in enumerate(additional, 1):
-                    print(f"{idx}. {skill}")
+                for sequence, skill in enumerate(additional, 1):
+                    print(f"{sequence}. {skill}")
         else:
             print(f"Key skills for '{matched_title}':")
-            for idx, skill in enumerate(sorted(individual_skills), 1):
-                print(f"{idx}. {skill}")
+            for sequence, skill in enumerate(sorted(individual_skills), 1):
+                print(f"{sequence}. {skill}")
     except Exception as e:
         print("An error occurred during the skills search: ", e)
 
