@@ -5,13 +5,54 @@ carouselColor = {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    searchQuery();
+    clearQuery();
+
     carouselEdit();
     carouselBgColorChange();
 
+    resize();
+
 });
+
+function searchQuery() {
+    // Check if there is text in #searching
+    // if yes, display #cross-icon
+    var searchInput = document.querySelector("#searching");
+    var cross = document.getElementById('cross-icon');
+
+    searchInput.addEventListener("input", function(event){
+        if (searchInput.value != "") {
+            cross.style.display = "block";
+        } else {
+            cross.style.display = "none";
+        }
+    });
+}
+
+function clearQuery() {
+    // Check if #cross-icon is clicked
+    // if clicked, #searching.innerHTML = "";
+    var cross = document.getElementById('cross-icon');
+    var searchInput = document.querySelector("#searching");
+
+    cross.addEventListener("click", function(event){
+        searchInput.value = "";
+        cross.style.display = "none";
+    });
+}
 
 function carouselEdit() {
     let carouselMain = document.querySelector("#main"); // Select carousel
+
+    function startingSideChange(){
+        var leftSide = document.querySelector("#leftCarousel");
+        var rightSide = document.querySelector("#rightCarousel");
+
+        // Add background colors to side carousels
+        leftSide.style.backgroundColor = carouselColor['carousel3']
+        rightSide.style.backgroundColor = carouselColor['carousel2']
+    }
 
     function UpdateLeftandRightHTML() {
         let activeItem = document.querySelector('.carousel-item.active');
@@ -34,10 +75,6 @@ function carouselEdit() {
         // Add background colors to side carousels
         leftSide.style.backgroundColor = carouselColor[prevID]
         rightSide.style.backgroundColor = carouselColor[nextID]
-
-        // leftSide.innerHTML = document.getElementById(prevID).innerHTML;
-        // rightSide.innerHTML = document.getElementById(nextID).innerHTML;
-
     }
 
     function transformDirection(e) {
@@ -61,8 +98,6 @@ function carouselEdit() {
             // Delay to set transition
             setTimeout(() => {
                 leftSide.classList.add('leftTransformLeft');
-                // Add blur?
-                //leftSide.style.filter = 'blur(2px)';
             }, 10);
 
             // Set right beginning position (right outside screen)
@@ -70,8 +105,6 @@ function carouselEdit() {
             // Set right transform from right to right with a bit of space
             setTimeout(() => {
                 rightSide.classList.add('leftTransformRight');
-                // Add blur?
-                //rightSide.style.filter = 'blur(2px)';
             }, 10);
 
         } else if (direction == "right") {
@@ -80,8 +113,6 @@ function carouselEdit() {
             // Set right transform from middle to right
             setTimeout(() => {
                 rightSide.classList.add('rightTransformRight');
-                // Add blur?
-                //rightSide.style.filter = 'blur(2px)';
             }, 10);
 
             // Set left beginning position (left outside screen)
@@ -89,14 +120,13 @@ function carouselEdit() {
             // Set left transform from left to left with a bit of space
             setTimeout(() => {
                 leftSide.classList.add('rightTransformLeft');
-                // Add blur?
-                //leftSide.style.filter = 'blur(2px)';
             }, 10);
         }
 
     }
 
-    UpdateLeftandRightHTML();
+    // First load page
+    startingSideChange()
 
     carouselMain.addEventListener('slid.bs.carousel', function (event) {
         UpdateLeftandRightHTML();
@@ -112,4 +142,12 @@ function carouselBgColorChange() {
         let id = item.id;
         item.style.backgroundColor = carouselColor[id];
     }
+}
+
+function resize(){
+    window.addEventListener('resize', function(e){
+        displayJobSalary();
+        displayPieChart();
+        displayWordcloud();
+    });
 }

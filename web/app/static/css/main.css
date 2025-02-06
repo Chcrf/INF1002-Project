@@ -1,19 +1,19 @@
-#body{
+#body {
     background-color: #ececec;
     font-family: math;
 }
 
-#webTitle{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+#webTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 /*Search Block*/
-#search{
+#search {
     display: block;
     min-height: 100vh;
 }
 
-#logo{
+#logo {
     height: 250px;
     margin-top: 50px;
     margin-bottom: 50px;
@@ -22,18 +22,18 @@
     margin-right: auto;
 }
 
-#search-form{
+#search-form {
     display: grid;
-    grid-template-columns: auto 90% auto;
+    grid-template-columns: 40px auto 40px;
     margin-left: auto;
     margin-right: auto;
     width: 60%;
     height: 40px;
     background-color: #F7F7F7;
-    padding-top: 2px;
+    padding-top: 1px;
 }
 
-#searching{
+#searching {
     position: relative;
     border: none;
     background-color: transparent;
@@ -44,34 +44,41 @@
     height: 100%;
 }
 
-#search-icon{
+#search-icon {
     position: relative;
     height: 20px;
     margin: 10px;
 }
 
-#cross-icon{
+#cross-icon {
     position: relative;
     height: 20px;
     margin: 10px;
-    /*how to make x into right side of search text form*/
-    /*visibility: hidden;*/
+    display: none;
 }
 
 /*Search Results Block*/
-#searchResults{
+#searchResults {
     padding-left: 100px;
     padding-right: 100px;
     min-height: 50vh;
 }
 
-#skillList{
+#showHideButtons {
+    display: flex;
+    justify-content: flex-start;
+    grid-gap: 20px;
+    margin-bottom: 10px;
+}
+
+#coreskillList,
+#addskillList {
     display: flex;
     flex-wrap: wrap;
     grid-gap: 10px;
 }
 
-.skills{
+.skills {
     display: block;
     border: 2px solid #909090;
     width: fit-content;
@@ -79,7 +86,7 @@
     border-radius: 50px;
 }
 
-.core p{
+.core p {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #f3d250;
     display: inline-block;
@@ -88,7 +95,7 @@
     margin-right: 10px;
 }
 
-.additional p{
+.additional p {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #F78888;
     display: inline-block;
@@ -98,11 +105,11 @@
 }
 
 /*Carousel Block*/
-#main{
+#main {
     height: 100vh;
 }
 
-#header1{
+#header1 {
     width: 80%;
     height: calc(100vh-550px);
     padding: 20px;
@@ -110,14 +117,14 @@
     margin-right: auto;
 }
 
-.carousel-item{
+.carousel-item {
     display: flex;
     width: 80% !important;
     height: 550px;
     background-color: #f3d250;
 }
 
-.carousel-side{
+.carousel-side {
     position: absolute;
     left: 50%;
     translate: -50%;
@@ -126,63 +133,73 @@
     filter: blur(3px);
 }
 
-.carousel-side.left{
+.carousel-side.left {
     left: 0;
     translate: -100vw;
 }
-.carousel-side.right{
+
+.carousel-side.right {
     left: 0;
     translate: 100vw;
 }
 
-.leftTransformLeft{
+.leftTransformLeft {
     transition: transform .6s ease-in-out;
     transform: translate(-80vw) scale(0.9) !important;
 }
-.leftTransformRight{
-    transition: transform .6s ease-in, blur .9s ease-out;
+
+.leftTransformRight {
+    transition: transform .6s ease-in;
     transform: translate(-10vw) scale(0.9) !important;
 }
 
-.rightTransformRight{
+.rightTransformRight {
     transition: transform .6s ease-in-out;
     transform: translate(80vw) scale(0.9) !important;
 }
-.rightTransformLeft{
-    transition: transform .6s ease-in, blur .9s ease-out;
+
+.rightTransformLeft {
+    transition: transform .6s ease-in;
     transform: translate(30vw) scale(0.9) !important;
 }
 
-.translateLeft{
+/* .transformAway{
+    transition: transform .6s ease-in-out;
+}
+.transformTowards{
+    transition: transform .6s ease-in;
+} */
+
+.translateLeft {
     transform: translate(-100%) scale(0.9);
 }
-.translateRight{
+
+.translateRight {
     transform: translate(100%) scale(0.9);
 }
 
-.carousel-text{
+.carousel-text {
     text-align: center;
-    height: 96px;
-    padding-bottom: 30px;
 }
 
-.carousel-graph{
+.carousel-graph {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    height: 420px;
-    max-height: 420px;
+    min-height: 420px;
 }
 
-#asc-dsc{
+#asc-dsc {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: inherit; /*width = 80%*/
+    width: inherit;
+    /*width = 80%*/
 }
 
-.carousel-control-next, .carousel-control-prev{
+.carousel-control-next,
+.carousel-control-prev {
     background-color: #ABABAB !important;
     width: 75px !important;
     height: 75px;
@@ -190,9 +207,10 @@
     border-radius: 50%;
 }
 
-.carousel-control-next{
+.carousel-control-next {
     margin-right: 2.5%;
 }
-.carousel-control-prev{
+
+.carousel-control-prev {
     margin-left: 2.5%;
 }

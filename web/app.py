@@ -1,11 +1,25 @@
 from flask import Flask, render_template, request
+import pandas as pd
+
 from search import skills_search as search, load_dataset
+
+from top10 import createGraph1
+from pie import createGraph2
+from job_vs_salary import createGraph3
 
 app = Flask(__name__,
             static_url_path='', 
-            static_folder='static',
-            template_folder='templates')
+            static_folder='app/static',
+            template_folder='app/templates')
+
+# Load datasets for creating graph and search functions
+df2 = pd.read_csv("job_listing_normalized_w_skills.csv")
 df = load_dataset("job_listing_normalized_w_skills.csv")
+
+# Create graph jsons
+createGraph1(df2)
+createGraph2(df2)
+createGraph3(df2)
 
 @app.route('/', methods=["GET","POST"])
 def home():
@@ -31,5 +45,6 @@ def home():
             return render_template('index.html')
     
     return render_template('index.html')
+
 if __name__ == '__main__':
    app.run()

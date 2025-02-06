@@ -45,27 +45,45 @@
         <div id="searchResults">
             {% if error == 0 %}
             <h1 id="jobRole">{{searched_job}}</h1>
-            <ul id="skillList">
+            <div id="showHideButtons">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="showCore" checked>
+                    <label class="form-check-label" for="showCore" id="coreText">Hide Core Skills</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="showAdd">
+                    <label class="form-check-label" for="showAdd" id="addText">Show Additional Skills</label>
+                </div>
+            </div>
+            <ul id="coreskillList" style="display: flex;">
                 {% for core_skill in core_skills %}
-                    <li class="core skills"><p>C</p>{{ core_skill }}</li>
+                <li class="core skills">
+                    <p>C</p>{{ core_skill }}
+                </li>
                 {% endfor %}
-                {% if additional_check %}
-                    {% for additional_skill in additional_skills %}
-                        <li class="additional skills"><p>A</p>{{ additional_skill }}</li>
-                    {% endfor %}
-                {% endif %}
             </ul>
-    
+            {% if additional_check %}
+            <ul id="addskillList" style="display: none;">
+                {% for additional_skill in additional_skills %}
+                <li class="additional skills">
+                    <p>A</p>{{ additional_skill }}
+                </li>
+                {% endfor %}
+            </ul>
+            <script src="js/showHide.js"></script>
+            {% endif %}
+
             {% elif error == 1 %}
             <h2 id="error">An error has occured, please search using a different word or try again later.</h2>
-    
+
             {% elif error == 2 %}
             <h2 id="noMatch">No results found.</h1>
-            <h3>We will try to add {{ searched_job }} into our database. In the meantime, please try searching other jobs.</h3>
-    
-            {% else %}
-    
-            {% endif %}
+                <h3>We will try to add {{ searched_job }} into our database. In the meantime, please try searching other
+                    jobs.</h3>
+
+                {% else %}
+
+                {% endif %}
         </div>
     </div>
 
@@ -78,33 +96,38 @@
             <div id="rightCarousel" class="carousel-side translateRight"> </div>
             <div class="carousel-item mx-auto float-none active" id="carousel1">
                 <div class="carousel-text p-3 text-white">
-                    <h1>This is Graph 1</h1>
+                    <h1>Top 10 Common Skills</h1>
+                </div>
+                <div class="carousel-graph" id="graph1">
+                    <canvas id="wordcloud"></canvas>
+                </div>
+                <script defer src="js/wordcloud.js"></script>
+
+            </div>
+
+            <div class="carousel-item mx-auto float-none" id="carousel2">
+                <div class="carousel-text p-3 text-white">
+                    <h1>Top 15 Job Categories</h1>
                 </div>
 
-                <div class="carousel-graph" id="graph1">
-                    <script src="js/chart.js"></script>
+                <div class="carousel-graph" id="graph2">
+                    <script src="js/pie_chart.js"></script>
+                </div>
+            </div>
+
+            <div class="carousel-item mx-auto float-none" id="carousel3">
+                <div class="carousel-text p-3 text-white">
+                    <h1>Top 10 Jobs With Highest Salary</h1>
+                </div>
+
+                <div class="carousel-graph" id="graph3">
+                    <script src="js/jobsalary.js"></script>
                 </div>
                 <div class="form-check form-switch" id="asc-dsc">
                     <input class="form-check-input" type="checkbox" id="toggle_button">
                     <label class="form-check-label" for="toggle_button" id="toggle_asc_dsc">Ascending</label>
                 </div>
-            </div>
 
-            <div class="carousel-item mx-auto float-none" id="carousel2">
-                <div class="carousel-text p-3 text-white">
-                    <h1>This is Graph 2</h1>
-                </div>
-                <div class="carousel-graph">
-                    <canvas id="wordcloud"></canvas>
-                </div>
-                <script defer src="js/wordcloud.js"></script>
-            </div>
-            
-            <div class="carousel-item mx-auto float-none" id="carousel3">
-                <div class="carousel-text p-3 text-white">
-                    <h1>This is Graph 3</h1>
-                </div>
-                <div class="carousel-graph"></div>
             </div>
         </div>
 
