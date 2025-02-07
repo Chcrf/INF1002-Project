@@ -8,7 +8,7 @@ It is recommended to use a Python virtual environment to manage dependencies and
 
 #### On macOS/Linux:
 ```sh
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 ```
 
