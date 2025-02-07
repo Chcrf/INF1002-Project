@@ -16,6 +16,8 @@ source venv/bin/activate
 Execute this <span style="color:red;">**ONLY**</span> if you are using powershell terminal.
 ```powershell
 Set-ExecutionPolicy AllSigned
+OR
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ```sh
