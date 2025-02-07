@@ -4,6 +4,7 @@ from src.train.train import Trainer
 from src.scrape.scrape import Scraper
 from src.extraction.skillsExtraction import SkillExtractor  
 from src.postprocessing.dataNormalization import DataNormalizer
+from src.web.run import RunWeb
 
 class Main():
     '''
@@ -25,8 +26,9 @@ class Main():
             Train: Perform model training
             Scrape: Perform scraping on MyCareersFuture
             Process: Use the trained model
+            StartWeb: Start website for data visualisation
         '''
-        if(len(sys.argv) < 2 or sys.argv[1] not in ["train","scrape","process"]):
+        if(len(sys.argv) < 2 or sys.argv[1] not in ["train","scrape","process","startweb"]):
             print("Enter either Train, Scrape, or Process")
             return
         mode = sys.argv[1].lower()
@@ -57,6 +59,11 @@ class Main():
                 normalizer.normalize()
                 print("="*20)
                 print("✅ Job Completed")
+            elif(mode == "startweb"):
+                print("🌐 Starting...")
+                RunWeb.startWeb()
+                print("="*20)
+                print("✅ Web Started")
         except Exception as ex:
             print("🚨 Oops Something Happened")
             print(repr(ex))
