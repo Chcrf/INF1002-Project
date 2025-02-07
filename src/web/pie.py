@@ -3,6 +3,11 @@ from collections import Counter
 import json
 
 def createGraph2(df):
+    """
+    Get the Categorie column of the dataset,
+    Use Counter to calculate the top 15 category
+    Write the result to a JSON file
+    """
     my_list = []
 
     category_counter = Counter()

@@ -3,6 +3,13 @@ from collections import Counter
 import json
 
 def createGraph3(df):
+    """
+    Gets the Job Title column of the dataset,
+    Use counter to calculate the top 10 most common jobs,
+    Look for the salary of the top 10 most common jobs,
+    Calculate the average of the salary,
+    Write the result to a JSON file
+    """
     my_dict = []
     job_counter = Counter()
 
