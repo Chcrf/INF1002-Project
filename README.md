@@ -110,3 +110,4 @@ python main.py <Mode>
 - `Train`: Perform model training
 - `Scrape`: Perform scraping on MyCareersFuture
 - `Process`: Use the trained model
+- `StartWeb`: Start data visualisation website
