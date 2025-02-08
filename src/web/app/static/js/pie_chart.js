@@ -46,7 +46,7 @@ function displayPieChart() {
             ]
         };
 
-        myChart.resize({ height: parentDiv.offsetHeight, width: parentDiv.offsetWidth });
+        myChart.resize({ height: 520, width: parentDiv.offsetWidth });
         option && myChart.setOption(option);
     }
 }

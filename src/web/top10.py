@@ -23,5 +23,5 @@ def createGraph1(df):
         my_dict.append(my_list)
 
     json_obj = json.dumps(my_dict,indent = 1)
-    with open("app/static/json/top10skills.json", "w") as outfile:
+    with open("src/web/app/static/json/top10skills.json", "w") as outfile:
         outfile.write(json_obj)

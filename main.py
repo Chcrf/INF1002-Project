@@ -26,10 +26,10 @@ class Main():
             Train: Perform model training
             Scrape: Perform scraping on MyCareersFuture
             Process: Use the trained model
-            StartWeb: Start website for data visualisation
+            StartWeb: Start data visualisation website
         '''
-        if(len(sys.argv) < 2 or sys.argv[1] not in ["train","scrape","process","startweb"]):
-            print("Enter either Train, Scrape, or Process")
+        if(len(sys.argv) < 2 or sys.argv[1].lower() not in ["train","scrape","process","startweb"]):
+            print("Enter either Train, Scrape, Process, or StartWeb")
             return
         mode = sys.argv[1].lower()
         try:
@@ -61,9 +61,10 @@ class Main():
                 print("✅ Job Completed")
             elif(mode == "startweb"):
                 print("🌐 Starting...")
-                RunWeb.startWeb()
+                runWeb = RunWeb()
+                runWeb.startWeb()
                 print("="*20)
-                print("✅ Web Started")
+                print("❌ Web Server Ended")
         except Exception as ex:
             print("🚨 Oops Something Happened")
             print(repr(ex))

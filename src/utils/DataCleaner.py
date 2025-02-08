@@ -22,7 +22,7 @@ class DataCleaner():
         Returns:
             (str): The string without newline and repeated spaces
         '''
-        return re.sub('\s{2,}', ' ', text.replace("\n"," "))
+        return re.sub(r'\s{2,}', ' ', text.replace("\n"," "))
 
     def sentencize(self,text):
         '''

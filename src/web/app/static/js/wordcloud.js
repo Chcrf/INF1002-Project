@@ -18,7 +18,7 @@ function displayWordcloud(){
         var parentDiv = document.querySelector(".carousel-item.active .carousel-graph");
         var canvas = document.getElementById("wordcloud");
     
-        canvas.height = parentDiv.offsetHeight;
+        canvas.height = 420;
         canvas.width = parentDiv.offsetWidth;
     
         if (canvas) {

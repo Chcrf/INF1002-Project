@@ -70,7 +70,7 @@ function getchart(orderup, jsonData) {
     };
 
     if (parentDiv.offsetHeight != 0){
-        myChart.resize({height: parentDiv.offsetHeight, width: parentDiv.offsetWidth});
+        myChart.resize({height: 420, width: parentDiv.offsetWidth});
     }
     option && myChart.setOption(option);
 }
