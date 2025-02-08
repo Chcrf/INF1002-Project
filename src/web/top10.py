@@ -4,6 +4,11 @@ from collections import Counter
 import json
 
 def createGraph1(df):
+    '''
+    Gets the skills column of the dataset, 
+    Use counter to calculate the top 10 most common skills,
+    Write the result to a JSON file
+    '''
     df["skills"] = df["skills"].apply(lambda x: ast.literal_eval(x))
     my_dict = []
     skill_counter = Counter()

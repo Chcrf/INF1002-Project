@@ -8,7 +8,7 @@ It is recommended to use a Python virtual environment to manage dependencies and
 
 #### On macOS/Linux:
 ```sh
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 ```
 
@@ -16,6 +16,8 @@ source venv/bin/activate
 Execute this <span style="color:red;">**ONLY**</span> if you are using powershell terminal.
 ```powershell
 Set-ExecutionPolicy AllSigned
+OR
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 ```sh
@@ -27,7 +29,7 @@ venv\Scripts\activate
 
 Ensure `pip`, `setuptools`, and `wheel` are up to date:
 ```sh
-python3 -m pip install --upgrade pip
+python -m pip install --upgrade pip
 pip install --upgrade setuptools wheel
 ```
 
@@ -108,3 +110,4 @@ python main.py <Mode>
 - `Train`: Perform model training
 - `Scrape`: Perform scraping on MyCareersFuture
 - `Process`: Use the trained model
+- `StartWeb`: Start data visualisation website

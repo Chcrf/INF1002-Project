@@ -23,9 +23,9 @@ def load_dataset(filename):
         raise
 
 def find_similar_job(user_input, jobs):
-    """Fuzzy match to find the closest job title using Levenshtein distance."""
+    """Fuzzy match to find the closest job title using a threshold score of 80 Levenshtein distance."""
     try:
-        match = process.extractOne(user_input, jobs)
+        match = process.extractOne(user_input, jobs, score_cutoff=80)
         if match:
             return match[0] 
         else: None
