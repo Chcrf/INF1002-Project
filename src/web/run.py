@@ -74,8 +74,8 @@ class RunWeb():
                     additional_list = False
         
                 return render_template('index.html',
-                                        searched_job = jobRole,
-                                        matched_title = matched_title,
+                                        searched_job = jobRole.upper(),
+                                        matched_title = matched_title.upper(),
                                         core_skills = core,
                                         additional_check = additional_list,
                                         additional_skills = additional,
