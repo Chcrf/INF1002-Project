@@ -78,7 +78,7 @@ To use prepared datasets, follow these steps:
 ./
 ├─ src/
 │  ├─ datasets/
-│  │  ├─ [The datasets to use]
+│  │  ├─ [The datasets to use (.csv)]
 ```
 
 Available datasets provided:
