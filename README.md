@@ -97,6 +97,16 @@ Available datasets provided:
     - job_listing_normalized.csv
         - Contains normalized scraped data that the model processed
         - Intended to be directly used by the web server  
+### Out-of-the-box Configuration
+To directly use the application, ensure that the following are placed in this structure.
+```sh
+./
+├─ src/
+│  ├─ datasets/
+│  │  ├─ job_listing_normalized.csv
+│  ├─ model/
+│  │  ├─ model-best/
+```
 
 
 ## Usage
