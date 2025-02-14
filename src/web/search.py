@@ -112,9 +112,12 @@ def common_skills_by_title(df, target_title, threshold=0.85):
         skill_sets = []
         for _, row in same_title_jobs.iterrows():
             skill_sets.append(get_high_confidence_skills(row['skills'], threshold))
-        
+            
         # Find intersection across all same-title jobs
-        common_skills = set.intersection(*skill_sets) if skill_sets else set()
+        if skill_sets: 
+            common_skills = set.intersection(*skill_sets)
+        else:
+            common_skills = set()
         return common_skills
     except Exception as e:
         print("An error occurred while getting common skills: ", e)
@@ -135,7 +138,7 @@ def skills_search(df, job):
         
         matched_title = find_similar_job(user_input, all_jobs)
         if not matched_title:
-            print("No matching job found.")
+            #print("No matching job found.")
             return 0, 0, 0, 2
         
         common_skills = common_skills_by_title(df, matched_title)

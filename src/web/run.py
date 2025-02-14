@@ -6,7 +6,7 @@ from pathlib import Path
 import logging
 import sys
 
-from .search import skills_search as search, load_dataset
+from .search import skills_search as search
 
 from .top10 import createGraph1
 from .pie import createGraph2
@@ -27,7 +27,7 @@ class RunWeb():
                          static_folder='app/static',
                          template_folder='app/templates')
         try:
-            self.df = pandas.read_csv(Path(__file__).parent.parent / f"datasets/Out-of-the-box/{CONSTANTS.DATA_VISUALISATION_INPUT_FILE}")
+            self.df = pandas.read_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.DATA_VISUALISATION_INPUT_FILE}")
         except FileNotFoundError:
             print("\n⛔ Error: The dataset file was not found. \n💡 Solution: Download and extract the prepared datasets, and place them in the src/ directory as shown in the README.\n")
             raise
@@ -74,8 +74,8 @@ class RunWeb():
                     additional_list = False
         
                 return render_template('index.html',
-                                        searched_job = jobRole.upper(),
-                                        matched_title = matched_title.upper(),
+                                        searched_job = jobRole,
+                                        matched_title = str(matched_title).upper(),
                                         core_skills = core,
                                         additional_check = additional_list,
                                         additional_skills = additional,

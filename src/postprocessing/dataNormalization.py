@@ -49,4 +49,4 @@ class DataNormalizer():
 
         data["skills"] = normalized_skills
 
-        data.to_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.SCRAPE_OUTPUT_FILE}",index=False)
+        data.to_csv(Path(__file__).parent.parent / f"datasets/{CONSTANTS.DATA_VISUALISATION_INPUT_FILE}",index=False)

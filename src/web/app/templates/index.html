@@ -78,9 +78,7 @@
 
             {% elif error == 2 %}
             <h2 class="noMatch">No results found.</h1>
-                <h3 class="noMatch">We will try to add {{ searched_job }} into our database. In the meantime, please
-                    try searching other
-                    jobs.</h3>
+                <h3 class="noMatch">We will try to add "{{ searched_job }}" into our database. In the meantime, please try searching for other jobs.</h3>
 
                 {% else %}
 
@@ -118,7 +116,7 @@
 
             <div class="carousel-item mx-auto float-none" id="carousel3">
                 <div class="carousel-text p-3 text-white">
-                    <h1>Top 10 Jobs With Highest Salary</h1>
+                    <h1>Top 10 Most Common Jobs (Average Salary)</h1>
                 </div>
 
                 <div class="carousel-graph" id="graph3">
