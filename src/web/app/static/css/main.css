@@ -1,0 +1,216 @@
+#body {
+    background-color: #ececec;
+    font-family: math;
+}
+
+#webTitle {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/*Search Block*/
+#search {
+    display: block;
+    min-height: 100vh;
+}
+
+#logo {
+    height: 250px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-form {
+    display: grid;
+    grid-template-columns: 40px auto 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 40px;
+    background-color: #F7F7F7;
+    padding-top: 1px;
+}
+
+#searching {
+    position: relative;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-family: sans-serif;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+}
+
+#search-icon {
+    position: relative;
+    height: 20px;
+    margin: 10px;
+}
+
+#cross-icon {
+    position: relative;
+    height: 20px;
+    margin: 10px;
+    display: none;
+}
+
+/*Search Results Block*/
+#searchResults {
+    padding-left: 100px;
+    padding-right: 100px;
+    min-height: 50vh;
+}
+
+#coreskillList,
+#addskillList {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+}
+
+.skills {
+    display: block;
+    border: 2px solid #909090;
+    width: fit-content;
+    padding: 5px 10px 5px 30px;
+    border-radius: 50px;
+}
+
+.core p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #f3d250;
+    display: inline-block;
+    margin: 0;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+
+.additional p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #F78888;
+    display: inline-block;
+    margin: 0;
+    margin-left: -10px;
+    margin-right: 10px;
+}
+
+#error, .noMatch{
+    text-align: center;
+}
+
+/*Carousel Block*/
+#main {
+    height: 100vh;
+}
+
+#header1 {
+    width: 80%;
+    height: calc(100vh-550px);
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-item {
+    display: flex;
+    width: 80% !important;
+    height: 550px;
+    background-color: #f3d250;
+}
+
+.carousel-side {
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+    width: 80%;
+    height: 550px;
+    filter: blur(3px);
+}
+
+.carousel-side.left {
+    left: 0;
+    translate: -100vw;
+}
+
+.carousel-side.right {
+    left: 0;
+    translate: 100vw;
+}
+
+.leftTransformLeft {
+    transition: transform .6s ease-in-out;
+    transform: translate(-80vw) scale(0.9) !important;
+}
+
+.leftTransformRight {
+    transition: transform .6s ease-in;
+    transform: translate(-10vw) scale(0.9) !important;
+}
+
+.rightTransformRight {
+    transition: transform .6s ease-in-out;
+    transform: translate(80vw) scale(0.9) !important;
+}
+
+.rightTransformLeft {
+    transition: transform .6s ease-in;
+    transform: translate(30vw) scale(0.9) !important;
+}
+
+/* .transformAway{
+    transition: transform .6s ease-in-out;
+}
+.transformTowards{
+    transition: transform .6s ease-in;
+} */
+
+.translateLeft {
+    transform: translate(-100%) scale(0.9);
+}
+
+.translateRight {
+    transform: translate(100%) scale(0.9);
+}
+
+.carousel-text {
+    text-align: center;
+}
+
+.carousel-graph {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    min-height: 420px;
+}
+
+#graph2{
+    margin-top: -50px;
+}
+
+#asc-dsc {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: inherit; /*width = 80%*/
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    background-color: #ABABAB !important;
+    width: 75px !important;
+    height: 75px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.carousel-control-next {
+    margin-right: 2.5%;
+}
+
+.carousel-control-prev {
+    margin-left: 2.5%;
+}

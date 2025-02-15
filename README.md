@@ -1,128 +1,149 @@
-# INF1002 Programming Fundamentals Python Projects
+# Extraction and Analysis of Skill Sets from Job Listings
 
-## 📅 Timeline and Deliverables
-| Deliverable                  | Due Date                      |
-|------------------------------|-------------------------------|
-| **Project Proposal**         | Friday, 17 Jan 2025, 11:59 PM |
-| **Progressive Report**       | Friday, 31 Jan 2025, 11:59 PM |
-| **Final Report & Source Code Submission** | Sunday, 16 Feb 2025, 11:59 PM |
-| **Presentation/Demo Video Submission** | To be Announced             |
-| **Peer Evaluation**          | If Needed                    |
+## Setup Instructions
 
----
+It is recommended to use a Python virtual environment to manage dependencies and avoid conflicts.
 
-## 🎯 Objective of the Project
-- Demonstrate your ability to write Python programs by solving a small practical problem.
-- Apply **Data Processing**, **Data Analysis**, and **Data Visualization** techniques.
-- Write **modular, efficient, and maintainable** code optimized for performance.
-- Utilize development frameworks and modules effectively.
-- Navigate challenges and document differences between the initial plan and actual progress.
-- Develop **effective communication, conflict resolution, and collaborative problem-solving** skills.
-- Practice **academic writing** (Title, Abstract, Introduction, Method, Experiments, Results, References).
-- Present findings **objectively** and with **innovation**.
-- Use advanced tools like **ChatGPT** or **Co-pilot**.
+### 1. Create and Activate a Virtual Environment (Optional but recommended)
 
----
+#### On macOS/Linux:
+```sh
+python -m venv venv
+source venv/bin/activate
+```
 
-## 📜 Report Preparation and Submission Instructions
-### How to Submit
-- Submit your final report in xSITE Dropbox under `Python Project Submission`.
-- File format: **Word file (NOT PDF)**.
-- Combine the final report, video, source code, and presentation slides into a **single ZIP file**.
-- **Only one submission per team** is allowed.
+#### On Windows:
+Execute this <span style="color:red;">**ONLY**</span> if you are using powershell terminal.
+```powershell
+Set-ExecutionPolicy AllSigned
+OR
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
----
+```sh
+python -m venv venv
+venv\Scripts\activate
+```
 
-## 📋 Deliverable Details
+### 2. Upgrade Essential Packages
 
-### **Project Proposal**
-- Clearly define the project, outline the data to be used, and describe the expected outcomes.
-- Include task allocation and a plan ensuring **each student contributes to coding**.
-- Limit: **2 pages (excluding references and appendices)**.
-- **Penalty:** Not graded (ABCD), but 3 points deducted if not submitted.
+Ensure `pip`, `setuptools`, and `wheel` are up to date:
+```sh
+python -m pip install --upgrade pip
+pip install --upgrade setuptools wheel
+```
 
-### **Progress Report**
-- Assess the current status of your project.
-- Include both the **project plan** and **actual progress**.
-- **Format:** You may use tables.
-- Limit: **1 page**.
-- **Penalty:** Not graded (ABCD), but 3 points deducted if not submitted.
+### 3. Install Project Dependencies
 
-### **Final Report**
-- Comprehensive summary of your work following the **IEEE template** (or suitable alternative).
-- Limit: **4-8 pages (excluding references and appendices)**.
-- Include results, insights, and detailed discussions with proper tables and figures.
-- Append additional information like images, screenshots, etc.
+Run the following command to install the project:
+```sh
+pip install -e .
+```
+### 4. Adding Embeddings
+Add the embeddings to the program:
+1. Download the embeddings from the releases page (embeddings.zip).
+2. Extract the embeddings
+3. Place it in the following directory structure inside `src/`:
+```sh
+./
+├─ src/
+│  ├─ utils/
+│  │  ├─ embeddings/
+│  │  │  ├─ occupations_embedding.pkl
+│  │  │  ├─ skills_embedding.pkl
+```
+Now, your environment is set up and ready to use!
 
-### **Video Requirements**
-- **Presentation:** Report on the system, optionally using slides.
-- **System Demonstration:** Include a working demo of the system.
-- **Code Overview:** Explain the code structure and main modules.
-- **Participation:** Each member must present a section.
-- **Duration:** Suggested duration is **15-30 minutes**.
+### 5. Modify Configuration File
+Access the configuration file in the following directory:
+```sh
+./
+├─ src/
+│  ├─ config/
+│  │  ├─ constants.py
+```
+Fields:
+- API_KEY
+    - Google Gemini API key for Auto Labelling to work
+- GEMINI_INPUT_FILE
+    - CSV file to pass into Google Gemini for Auto Labelling
+- GEMINI_OUTPUT_FILE
+    - CSV file that will save Google Gemini output
+- SCRAPE_OUTPUT_FILE
+    - CSV file that the scraper will save data to
+- DATA_VISUALISATION_INPUT_FILE
+    - CSV file that the model will save output to and for the web application to visualize data
+- MODE
+    - `GPU` or `CPU`
+    - Option to define whether to use GPU or CPU to train
 
----
+## Using Prepared Data (Optional)
+### Using Pre-Trained Model
+To use pre-trained models, follow these steps:
 
-## 📘 Report Format
+1. Download the pre-trained model from the releases page (model.zip).
+2. Extract the model.
+3. Place it in the following directory structure inside `src/`:
 
-### 1. **Title and Team Information**
-   - Include project title, team ID, member names, student IDs, and emails.
+```sh
+./
+├─ src/
+│  ├─ model/
+│  │  ├─ model-best/
+```
 
-### 2. **Abstract**
-   - Summarize the problem, approach, and key findings.
+### Using Prepared Datasets
+To use prepared datasets, follow these steps:
+1. Download the prepared datasets from the releases page (datasets.zip).
+2. Extract the datasets
+3. Place it in the following directory structure inside `src/`:
 
-### 3. **Introduction**
-   - Context, purpose, approach, and outcomes of your project.
+```sh
+./
+├─ src/
+│  ├─ datasets/
+│  │  ├─ [The datasets to use (.csv)]
+```
 
-### 4. **Related Works/Literature**
-   - Brief review of related work with citations.
+Available datasets provided:
+- Training Data
+    - job_desc.csv
+        - Contains raw data of job listings
+        - Intended to be used for Google Gemini auto labelling
+    - job_desc_with_skills.csv
+        - Contains annotated data from Google Gemini
+        - Intended to be used starting from the Data Cleaning step
+- Processing Data
+    - job_listing.csv
+        - Contains scraped data from MyCareersFuture website
+        - Intended to be used by model for processing
+- Out-of-the-box Data
+    - job_listing_normalized.csv
+        - Contains normalized scraped data that the model processed
+        - Intended to be directly used by the web server  
 
-### 5. **Methods**
-   - Dataset details.
-   - System diagram with explanations.
-   - Data pre-processing and analysis tasks.
-   - Algorithms and rationale.
+### Out-of-the-box Configuration
+To directly use the application, ensure that the following are placed in this structure.
+```sh
+./
+├─ src/
+│  ├─ datasets/
+│  │  ├─ job_listing_normalized.csv
+│  ├─ model/
+│  │  ├─ model-best/
+```
 
-### 6. **Results and Insights**
-   - Present results with **tables and figures**.
-   - Interpretations and discussions.
 
-### 7. **Conclusion**
-   - Concise summary and potential future work.
 
-### 8. **References**
-   - Include all citations and URLs.
+## Usage
 
-### 9. **Appendix**
-   - Add additional information, screenshots, or results.
+Run the following command to use the project:
+```sh
+python main.py <Mode>
+```
 
----
-
-## 📌 Additional Sections
-
-### **ChatGPT/GenAI Usage**
-- Record interactions with ChatGPT, highlighting its strengths and limitations.
-- Provide reflections on the tool's use.
-- **Mandatory Section** in the appendix.
-
-### **Reflection**
-- Compare progress against the initial plan.
-- Share insights on library applications and problem-solving.
-- Focus on project management reflections.
-
----
-
-## 🌟 Bonus
-- Extra marks for **innovative algorithms** that outperform state-of-the-art benchmarks.
-- High-performing projects may be selected for **publication and presentation** in national/international conferences (SIT covers registration fees).
-
----
-
-## ⚠️ Policies
-
-### **Late Submission**
-- Penalty: **20% per day**.
-- Work submitted **more than 4 days late** will not be accepted.
-
-### **Plagiarism**
-- Strictly prohibited. Both copied and sharing parties will receive **ZERO marks**.
+### Modes:
+- `Train`: Perform model training
+- `Scrape`: Perform scraping on MyCareersFuture
+- `Process`: Use the trained model
+- `StartWeb`: Start data visualisation website
