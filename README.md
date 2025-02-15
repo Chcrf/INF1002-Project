@@ -1,5 +1,23 @@
 # Extraction and Analysis of Skill Sets from Job Listings
 
+## Table of Contents
+
+- [Setup Instructions](#setup-instructions)
+  - [1. Create and Activate a Virtual Environment (Optional but recommended)](#1-create-and-activate-a-virtual-environment-optional-but-recommended)
+    - [On macOS/Linux](#on-macoslinux)
+    - [On Windows](#on-windows)
+  - [2. Upgrade Essential Packages](#2-upgrade-essential-packages)
+  - [3. Install Project Dependencies](#3-install-project-dependencies)
+  - [4. Adding Embeddings](#4-adding-embeddings)
+  - [5. Modify Configuration File](#5-modify-configuration-file)
+- [Using Prepared Data (Optional)](#using-prepared-data-optional)
+  - [Using Pre-Trained Model](#using-pre-trained-model)
+  - [Using Prepared Datasets](#using-prepared-datasets)
+  - [Out-of-the-box Configuration](#out-of-the-box-configuration)
+- [Usage](#usage)
+  - [Modes](#modes)
+
+
 ## Setup Instructions
 
 It is recommended to use a Python virtual environment to manage dependencies and avoid conflicts.
