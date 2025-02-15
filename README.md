@@ -59,7 +59,7 @@ pip install -e .
 ```
 ### 4. Adding Embeddings
 Add the embeddings to the program:
-1. Download the embeddings from the releases page (embeddings.zip).
+1. Download the embeddings from the [releases](https://github.com/Chcrf/INF1002-Project/releases/latest) page (embeddings.zip).
 2. Extract the embeddings
 3. Place it in the following directory structure inside `src/`:
 ```sh
@@ -99,7 +99,7 @@ Fields:
 ### Using Pre-Trained Model
 To use pre-trained models, follow these steps:
 
-1. Download the pre-trained model from the releases page (model.zip).
+1. Download the pre-trained model from the [releases](https://github.com/Chcrf/INF1002-Project/releases/latest) page (model.zip).
 2. Extract the model.
 3. Place it in the following directory structure inside `src/`:
 
@@ -112,7 +112,7 @@ To use pre-trained models, follow these steps:
 
 ### Using Prepared Datasets
 To use prepared datasets, follow these steps:
-1. Download the prepared datasets from the releases page (datasets.zip).
+1. Download the prepared datasets from the [releases](https://github.com/Chcrf/INF1002-Project/releases/latest) page (datasets.zip).
 2. Extract the datasets
 3. Place it in the following directory structure inside `src/`:
 
