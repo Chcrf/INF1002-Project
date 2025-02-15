@@ -50,12 +50,15 @@ class Trainer():
             Fixed::model (Directory)
         '''
         #1. Use gemini to auto label training data
+        print("Performing Labelling...")
         autoLabeller = GeminiAutoLabeller()
         autoLabeller.autoLabel()
         #2. Clean gemini data
+        print("Cleaning Data...")
         dataCleaner = DataCleaning()
         dataCleaner.dataReformatter()
         #3. Convert data to spacy processable
+        print("Converting Data...")
         dataConverter = DataConverter()
         dataConverter.convert()
 

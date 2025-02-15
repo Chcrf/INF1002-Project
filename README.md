@@ -1,4 +1,4 @@
-# Project Name
+# Extraction and Analysis of Skill Sets from Job Listings
 
 ## Setup Instructions
 
@@ -53,6 +53,30 @@ Add the embeddings to the program:
 │  │  │  ├─ skills_embedding.pkl
 ```
 Now, your environment is set up and ready to use!
+
+### 5. Modify Configuration File
+Access the configuration file in the following directory:
+```sh
+./
+├─ src/
+│  ├─ config/
+│  │  ├─ constants.py
+```
+Fields:
+- API_KEY
+    - Google Gemini API key for Auto Labelling to work
+- GEMINI_INPUT_FILE
+    - CSV file to pass into Google Gemini for Auto Labelling
+- GEMINI_OUTPUT_FILE
+    - CSV file that will save Google Gemini output
+- SCRAPE_OUTPUT_FILE
+    - CSV file that the scraper will save data to
+- DATA_VISUALISATION_INPUT_FILE
+    - CSV file that the model will save output to and for the web application to visualize data
+- MODE
+    - `GPU` or `CPU`
+    - Option to define whether to use GPU or CPU to train
+
 ## Using Prepared Data (Optional)
 ### Using Pre-Trained Model
 To use pre-trained models, follow these steps:
@@ -97,6 +121,7 @@ Available datasets provided:
     - job_listing_normalized.csv
         - Contains normalized scraped data that the model processed
         - Intended to be directly used by the web server  
+
 ### Out-of-the-box Configuration
 To directly use the application, ensure that the following are placed in this structure.
 ```sh
@@ -107,6 +132,7 @@ To directly use the application, ensure that the following are placed in this st
 │  ├─ model/
 │  │  ├─ model-best/
 ```
+
 
 
 ## Usage
